@@ -1,3 +1,4 @@
+<style>
 html,
   body {
     margin: 0;
@@ -292,6 +293,7 @@ html,
     color: #fff;
     box-shadow: 0 0 12px rgb(255 255 255 / 0.6);
   }
+</style>
   .like-button.liked svg {
     fill: #fff;
     stroke: #fff;
