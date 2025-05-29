@@ -1,0 +1,318 @@
+html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #000;
+    color: #fff;
+    font-family: "JetBrains Mono", monospace;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  /* Prism dark theme overrides */
+  pre[class*="language-"] {
+    background: #121212 !important;
+    color: #e0e0e0 !important;
+    border-radius: 0.75rem;
+    padding-top: 3rem !important;
+    position: relative;
+    font-size: 1rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    box-shadow: 0 8px 24px rgb(255 255 255 / 0.05);
+    transition: box-shadow 0.3s ease;
+    counter-reset: line;
+  }
+  pre[class*="language-"]:hover {
+    box-shadow: 0 12px 36px rgb(255 255 255 / 0.15);
+  }
+  pre[class*="language-"] code {
+    position: relative;
+    padding-left: 3.5rem;
+    display: block;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  pre[class*="language-"] code > span {
+    display: block;
+    counter-increment: line;
+    padding-left: 1rem;
+    position: relative;
+  }
+  pre[class*="language-"] code > span::before {
+    content: counter(line);
+    position: absolute;
+    left: 0;
+    width: 2.5rem;
+    text-align: right;
+    color: rgba(255 255 255 / 0.3);
+    user-select: none;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    font-family: "JetBrains Mono", monospace;
+  }
+  .code-buttons {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.75rem;
+    z-index: 20;
+  }
+  .code-button {
+    background: transparent;
+    border: 1.5px solid #fff;
+    color: #fff;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    box-shadow: 0 0 6px rgb(255 255 255 / 0.15);
+  }
+  .code-button:hover,
+  .code-button:focus {
+    background-color: #fff;
+    color: #000;
+    border-color: #fff;
+    outline: none;
+    box-shadow: 0 0 12px rgb(255 255 255 / 0.5);
+  }
+  pre::-webkit-scrollbar {
+    height: 10px;
+  }
+  pre::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 6px;
+  }
+  pre::-webkit-scrollbar-track {
+    background: #222;
+  }
+  @media (max-width: 640px) {
+    pre::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .hamburger-line {
+    stroke: #fff;
+    stroke-width: 3;
+    stroke-linecap: round;
+    transition: stroke 0.3s ease;
+  }
+  button#hamburgerBtn:hover .hamburger-line,
+  button#hamburgerBtn:focus .hamburger-line {
+    stroke: #bbb;
+    outline: none;
+  }
+  ::selection {
+    background: #fff;
+    color: #000;
+  }
+  textarea {
+    background: rgba(255 255 255 / 0.05);
+    border: 1.5px solid rgba(255 255 255 / 0.15);
+    border-radius: 0.75rem;
+    color: #eee;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1rem;
+    padding: 1rem;
+    resize: vertical;
+    min-height: 120px;
+    box-shadow: 0 4px 20px rgb(255 255 255 / 0.05);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+  }
+  textarea:focus {
+    border-color: #fff;
+    box-shadow: 0 0 12px rgb(255 255 255 / 0.6);
+    outline: none;
+    color: #fff;
+    background: rgba(255 255 255 / 0.1);
+  }
+  .ad-placeholder {
+    background: rgba(255 255 255 / 0.05);
+    border: 1.5px solid rgba(255 255 255 / 0.15);
+    border-radius: 1rem;
+    box-shadow: 0 8px 24px rgb(255 255 255 / 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 600;
+    font-size: 1rem;
+    color: rgba(255 255 255 / 0.5);
+    user-select: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .ad-placeholder:hover {
+    background: rgba(255 255 255 / 0.1);
+    color: rgba(255 255 255 / 0.8);
+  }
+  #menuPanel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    max-width: 80vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    border-right: 1.5px solid rgba(255 255 255 / 0.2);
+    box-shadow: 4px 0 20px rgba(255 255 255 / 0.15);
+    transform: translateX(-110%);
+    transition: transform 0.3s ease;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    font-family: "JetBrains Mono", monospace;
+  }
+  #menuPanel.open {
+    transform: translateX(0);
+  }
+  #menuPanel header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 2rem;
+    user-select: none;
+    letter-spacing: 0.05em;
+  }
+  #menuPanel nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.125rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255 255 255 / 0.1);
+    transition: color 0.25s ease;
+    user-select: none;
+  }
+  #menuPanel nav a:hover,
+  #menuPanel nav a:focus {
+    color: #bbb;
+    outline: none;
+  }
+  #menuCloseBtn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.25s ease;
+  }
+  #menuCloseBtn:hover,
+  #menuCloseBtn:focus {
+    color: #bbb;
+    outline: none;
+  }
+  #menuOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 40;
+  }
+  #menuOverlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .author {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: rgba(255 255 255 / 0.75);
+    margin-top: -0.75rem;
+    margin-bottom: 1.5rem;
+    user-select: none;
+  }
+  .author svg {
+    width: 24px;
+    height: 24px;
+    stroke: rgba(255 255 255 / 0.75);
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    fill: none;
+    transition: stroke 0.3s ease;
+  }
+  .author:hover svg,
+  .author:focus svg {
+    stroke: #fff;
+    outline: none;
+  }
+  .author span {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+  }
+  .like-buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    user-select: none;
+    align-items: center;
+  }
+  .like-button {
+    background: transparent;
+    border: 1.5px solid rgba(255 255 255 / 0.4);
+    border-radius: 0.5rem;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(255 255 255 / 0.6);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 6px rgb(255 255 255 / 0.1);
+    user-select: none;
+  }
+  .like-button svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    fill: none;
+    transition: stroke 0.3s ease, fill 0.3s ease;
+  }
+  .like-button.liked,
+  .like-button.unliked {
+    border-color: #fff;
+    color: #fff;
+    box-shadow: 0 0 12px rgb(255 255 255 / 0.6);
+  }
+  .like-button.liked svg {
+    fill: #fff;
+    stroke: #fff;
+  }
+  .like-button.unliked svg {
+    fill: none;
+    stroke: #fff;
+  }
+  .like-button:hover,
+  .like-button:focus {
+    border-color: #fff;
+    color: #fff;
+    outline: none;
+    box-shadow: 0 0 12px rgb(255 255 255 / 0.6);
+  }
+  .like-count {
+    min-width: 2.5rem;
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
+    user-select: none;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.9rem;
+    }
